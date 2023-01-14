@@ -47,6 +47,9 @@ for y in range(l.size[1]):
 sortie3.save("Imageout4.bmp")
 
 
+
+
+
 def cacher(i,b):
     return i-(i%2)+b
 
@@ -57,9 +60,30 @@ m2 = sortie3
 sortie4 = m1.copy()
 for y in range(m2.size[1]):
     for x in range(m2.size[0]):
-        c = m2.getpixel((x,y))
-        sortie4.putpixel((x,y),(cacher(c[0],0),c[0],c[0]))
+        c1 = m1.getpixel((x,y))
+        c2 = m2.getpixel((x,y))
+        if c2 == (255,255,255):
+            b = 1
+        else:
+            b = 0
+        sortie4.putpixel((x,y),(cacher(c1[0],b),c1[1],c1[2]))
 
+sortie4.save("Imageout5.bmp")
+
+
+a = Image.open("Imageout5.bmp")
+sortie5 = a.copy()
+
+def trouver(i):
+    return i%2
+
+for y in range(a.size[1]):
+    for x in range(a.size[0]):
+        c = a.getpixel((x,y))
+        b = trouver(c[0])
+        sortie5.putpixel((x,y),(b*255,b*255,b*255))
+
+sortie5.save("Imageout6.bmp")
 
 
 
